@@ -1,11 +1,43 @@
-// Library.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <iostream>
+#include <string>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+using namespace std;
+
+   
+	class Book {
+		string title;
+	string author;
+	string isbn;
+	bool availability;
+	string dateAdd;
+
+public:
+	Book() : title(""), author(""), isbn(""), availability(true), dateAdd("") {}
+
+	void setBookDetails(string t, string a, string i, string d) {
+
+			title = t;
+			author = a;
+			isbn = i;
+			availability = true;
+			dateAdd = d;
+		}
+
+	void displayBookDetails() const {
+		cout << "Title" << title << endl;
+		cout << "Author" << author << endl;
+		cout << "isbn" << isbn << endl;
+		cout << "Availability" << (availability ? "Available" : "Borrowed") << endl;
+		cout << "Date Added" << dateAdd << endl;
+		cout << "------" << endl;
+
+	}
+	 
+
+
+
+
 }
 
 
