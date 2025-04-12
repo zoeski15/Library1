@@ -1,57 +1,57 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
+#include "Book.cpp"
 
 using namespace std;
-
 int main() {
+    const int SIZE = 5;
+    Book books[SIZE];
 
-class Book {
-private:
-	string title;
-	string author;
-	string isbn;
-	bool availability;
-	string dateAdd;
+    // Initialize books
+    books[0].setBookDetails("1984", "George Orwell", "9780451524935", "2023-02-01");
+    books[1].setBookDetails("The Great Gatsby", "F. Scott Fitzgerald", "9780743273565", "2023-01-01");
+    books[2].setBookDetails("To Kill a Mockingbird", "Harper Lee", "9780061120084", "2023-01-15");
+    books[3].setBookDetails("Pride and Prejudice", "Jane Austen", "9780141439518", "2023-03-01");
+    books[4].setBookDetails("Moby-Dick", "Herman Melville", "9781503280786", "2023-03-15");
 
-public:
-	Book() : title(""), author(""), isbn(""), availability(true), dateAdd("") {}
+    // Sort books by ISBN
+    Book::sortBookData(books, SIZE);
 
-	void setBookDetails(string t, string a, string i, string d) {
-		title = t;
-		author = a;
-		isbn = i;
-		availability = true;
-		dateAdd = d;
-	}
+    // Display sorted books
+    cout << "\n--- Library Book List (Sorted by ISBN) ---\n";
+    for (int i = 0; i < SIZE; ++i) {
+        books[i].displayBookDetails();
+    }
 
-	void displayBookDetails() const {
-		cout << "Title: " << title << endl;
-		cout << "Author: " << author << endl;
-		cout << "ISBN: " << isbn << endl;
-		cout << "Availability: " << (availability ? "Available" : "Borrowed") << endl;
-		cout << "Date Added: " << dateAdd << endl;
-		cout << "------" << endl;
-	}
+    // Borrowing loop
+    string inputISBN;
+    while (true) {
+        cout << "\nEnter ISBN of the book to borrow (or 0 to exit): ";
+        getline(cin, inputISBN);
 
-	string getisbn() const {
-		return isbn;
-	}
+        if (inputISBN == "0") {
+            cout << "Exiting the program. Goodbye!\n";
+            break;
+        }
 
-	bool isAvailable() const{
-		return availability;
-	}
+        bool found = false;
+        for (int i = 0; i < SIZE; ++i) {
+            if (books[i].getISBN() == inputISBN) {
+                found = true;
+                if (books[i].borrowBook()) {
+                    cout << "Book borrowed successfully!\n";
+                }
+                else {
+                    cout << "Error: Book is already borrowed.\n";
+                }
+                break;
+            }
+        }
 
-	bool hasBeenBorrowed() {
-		if(availability) {
-			availability = false;
-			return true;
-		}
-		return false;
-	   }
-	void returnBook() {
-		availability = true;
-	}
-};
+        if (!found) {
+            cout << " Error: Book with ISBN " << inputISBN << " not found.\n";
+        }
+    }
 
-return 0;
+    return 0;
 }
