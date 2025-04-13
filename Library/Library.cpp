@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include <string>
-#include "Book.cpp"
+#include "Book.h"
 
 using namespace std;
 int main() {
@@ -8,11 +8,11 @@ int main() {
     Book books[SIZE];
 
     // Initialize books
-    books[0].setBookDetails("1984", "George Orwell", "9780451524935", "2023-02-01");
-    books[1].setBookDetails("The Great Gatsby", "F. Scott Fitzgerald", "9780743273565", "2023-01-01");
-    books[2].setBookDetails("To Kill a Mockingbird", "Harper Lee", "9780061120084", "2023-01-15");
-    books[3].setBookDetails("Pride and Prejudice", "Jane Austen", "9780141439518", "2023-03-01");
-    books[4].setBookDetails("Moby-Dick", "Herman Melville", "9781503280786", "2023-03-15");
+    books[0].setBookDetails("Fight Club", "Chuck Palahniuk", "9781784878542", "2025-04-01");
+    books[1].setBookDetails("Lord of the Flies", "William Golding", "978-0399501487 ", "2025-04-02");
+    books[2].setBookDetails("Demian", "Hermann Hesse", "9780143106784 ", "2025-04-03");
+    books[3].setBookDetails("Normal People", "Sally Rooney", "9780571334650", "2025-04-04");
+    books[4].setBookDetails("A Little Life", "Hanya Yanagihara", "9781447294832", "2025-04-05");
 
     // Sort books by ISBN
     Book::sortBookData(books, SIZE);
@@ -30,7 +30,7 @@ int main() {
         getline(cin, inputISBN);
 
         if (inputISBN == "0") {
-            cout << "Exiting the program. Goodbye!\n";
+            cout << "End program\n";
             break;
         }
 
@@ -39,10 +39,10 @@ int main() {
             if (books[i].getISBN() == inputISBN) {
                 found = true;
                 if (books[i].borrowBook()) {
-                    cout << "Book borrowed successfully!\n";
+                    cout << "Book borrowed\n";
                 }
                 else {
-                    cout << "Error: Book is already borrowed.\n";
+                    cout << "Error: Book has been borrowed.\n";
                 }
                 break;
             }

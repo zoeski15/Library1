@@ -18,7 +18,7 @@
     <ClCompile Include="Library.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Book.cpp">
+    <ClCompile Include="Book.h">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
